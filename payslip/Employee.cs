@@ -8,13 +8,13 @@ namespace Payslip
         // Auto-implemented properties for trivial get and set
         public string FirstName { get; set;}
         public string LastName {get; set;}
-        public double AnnualSalary {get; set;}
-        public double SuperRate {get; set;}
+        public int AnnualSalary {get; set;}
+        public int SuperRate {get; set;}
         public string StartDate {get; set;}
         public string EndDate {get; set;}
 
         // Constructor
-        public Employee ( string firstName, string lastName, double annualSalary, double superRate, string startDate, string endDate) 
+        public Employee ( string firstName, string lastName, int annualSalary, int superRate, string startDate, string endDate) 
         {
             FirstName = firstName;
             LastName = lastName;
@@ -35,12 +35,12 @@ namespace Payslip
             return $"{StartDate} - {EndDate}";
         }
 
-        public double CalculateGrossIncome(double annualSalary)
+        public double CalculateGrossIncome()
         {
-            return Math.Floor(AnnualSalary/12);
+            return Math.Floor(Convert.ToDouble(AnnualSalary)/12);
         }
 
-        public double CalculateIncomeTax(double annualSalary)
+        public double CalculateIncomeTax()
         {
             if (AnnualSalary >= 0 && AnnualSalary <= 18200)
             {
@@ -61,14 +61,14 @@ namespace Payslip
             return 54232 + 0.45*(AnnualSalary - 180000);
         }
 
-        public double CalculateNetIncome(double annualSalary)
+        public double CalculateNetIncome()
         {
-            return AnnualSalary - CalculateIncomeTax(AnnualSalary);
+            return AnnualSalary - Math.Ceiling(CalculateIncomeTax());
         }
 
-        public double CalculateSuper(double annualSalary, double superRate)
+        public double CalculateSuper()
         {
-            return CalculateGrossIncome(AnnualSalary) * SuperRate/100;
+            return CalculateGrossIncome() * SuperRate/100;
         }
     }
 }
