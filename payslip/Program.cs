@@ -27,14 +27,14 @@ namespace Payslip
             var superRate = int.Parse(Console.ReadLine());
             
             
-            var employee = new Employee(firstName, lastName, annualSalary, superRate, startDate, " 31 March");
-            
+            var employee = new Employee(firstName, lastName, startDate, " 31 March");
+            var taxCalculator = new TaxCalculator(annualSalary, superRate);
             Console.WriteLine("Name: " + employee.GenerateFullName());
             Console.WriteLine("Pay Period: " + employee.GeneratePayPeriod());
-            Console.WriteLine("Gross Income: " + employee.CalculateGrossIncome());
-            Console.WriteLine("Income Tax: " + employee.CalculateIncomeTax());
-            Console.WriteLine("Net Income: " +employee.CalculateNetIncome());
-            Console.WriteLine("Super: " + employee.CalculateSuper());
+            Console.WriteLine("Gross Income: " + taxCalculator.CalculateGrossIncome());
+            Console.WriteLine("Income Tax: " + taxCalculator.CalculateIncomeTax());
+            Console.WriteLine("Net Income: " +taxCalculator.CalculateNetIncome());
+            Console.WriteLine("Super: " + taxCalculator.CalculateSuper());
             
             Console.WriteLine("Thank you for using MYOB! " );
         }
